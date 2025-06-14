@@ -55,12 +55,12 @@ def guardar_json(nombre, datos):
 
 def main():
     procesos = obtener_datos_paginados(BASE_PROCESOS, {
-    #"$where": "estado_de_apertura_del_proceso = 'Abierto' AND upper(descripci_n_del_procedimiento) like '%INTELIGENCIA ARTIFICIAL%' AND fecha_de_publicacion_del >= '2024-01-01'"
-    "$where": "estado_de_apertura_del_proceso = 'Abierto' AND upper(descripci_n_del_procedimiento) like '%INTELIGENCIA ARTIFICIAL%'"
+    #"$where": "fecha_de_publicacion_del >= '2024-01-01'",
+    "$where": "upper(descripci_n_del_procedimiento) like '%INTELIGENCIA%ARTIFICIAL%' AND fecha_de_publicacion_del >= '2024-05-01'"
 })
     contratos = obtener_datos_paginados(BASE_CONTRATOS, {
-     #   "$where": "upper(objeto_del_contrato) like '%INTELIGENCIA ARTIFICIAL%' AND fecha_de_firma >= '2024-01-01'"
-        "$where": "upper(objeto_del_contrato) like '%INTELIGENCIA ARTIFICIAL%'"
+      #  "$where": "ultima_actualizacion >= '2024-01-01'",
+       "$where": "upper(objeto_del_contrato) like '%INTELIGENCIA%ARTIFICIAL%' AND ultima_actualizacion >= '2024-05-01'"
     })
 
     guardar_json(f"procesos_ia_abiertos.json", procesos)
